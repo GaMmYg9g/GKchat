@@ -1,5 +1,8 @@
+// public/js/app.js - COMPLETO Y ACTUALIZADO
+
 // Configuración de Socket.io
-const socket = io();
+// ⚠️ IMPORTANTE: Cuando despliegues en Koyeb, cambia esta URL por la que te den
+const socket = io('URL_DE_KOYEB'); // Ejemplo: https://gkchat-backend.nombre.koyeb.app
 
 // Elementos del DOM
 const loginScreen = document.getElementById('login-screen');
@@ -21,7 +24,7 @@ let typingTimeout = null;
 // Registrar Service Worker para PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('/GKchat/sw.js') // ⚠️ Cambiado: añadido /GKchat/
       .then(registration => {
         console.log('ServiceWorker registrado:', registration);
       })
@@ -73,6 +76,7 @@ socket.on('user joined', (data) => {
   const systemMessage = document.createElement('div');
   systemMessage.className = 'system-message';
   systemMessage.textContent = data.message;
+  systemMessage.style.cssText = 'text-align: center; color: #666; font-style: italic; margin: 10px 0;';
   messagesDiv.appendChild(systemMessage);
   scrollToBottom();
 });
@@ -82,6 +86,7 @@ socket.on('user left', (data) => {
   const systemMessage = document.createElement('div');
   systemMessage.className = 'system-message';
   systemMessage.textContent = data.message;
+  systemMessage.style.cssText = 'text-align: center; color: #666; font-style: italic; margin: 10px 0;';
   messagesDiv.appendChild(systemMessage);
   scrollToBottom();
 });
@@ -163,3 +168,12 @@ function scrollToBottom() {
 if ('Notification' in window) {
   Notification.requestPermission();
 }
+
+// Verificar conexión con el servidor
+socket.on('connect', () => {
+  console.log('✅ Conectado al servidor');
+});
+
+socket.on('connect_error', (error) => {
+  console.log('❌ Error de conexión:', error);
+});
