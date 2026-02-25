@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat PWA</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+  <div class="chat-container" id="chat-container">
+    <!-- Pantalla de inicio de sesión -->
+    <div id="login-screen" class="login-screen">
+      <h1>Chat PWA</h1>
+      <p>Comunicación en tiempo real</p>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Tu nombre" required>
+        <input type="text" id="room" placeholder="Sala (ej: sala1)" value="general">
+        <button type="submit">Iniciar Chat</button>
+      </form>
+    </div>
+
+    <!-- Pantalla de chat (oculta inicialmente) -->
+    <div id="chat-screen" class="chat-screen hidden">
+      <div class="chat-header">
+        <div>
+          <h2 id="current-room">Sala: general</h2>
+          <span id="user-status"></span>
+        </div>
+        <button id="logout-btn" class="logout-btn">Salir</button>
+      </div>
+      
+      <div id="messages" class="messages"></div>
+      
+      <div class="typing-indicator" id="typing-indicator"></div>
+      
+      <form id="message-form" class="message-form">
+        <input type="text" id="message-input" placeholder="Escribe un mensaje..." autocomplete="off">
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
