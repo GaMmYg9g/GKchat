@@ -1,7 +1,7 @@
 {
-  "name": "chat-pwa",
+  "name": "gkchat",
   "version": "1.0.0",
-  "description": "PWA de chat en tiempo real con Socket.io",
+  "description": "Chat PWA con WebSockets en tiempo real",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
@@ -14,5 +14,11 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["chat", "pwa", "websockets", "socket.io", "realtime"],
+  "author": "GaMmYg9g",
+  "license": "MIT"
 }
